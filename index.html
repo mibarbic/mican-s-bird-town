@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script>
+            //create scene
+			const scene = new THREE.Scene();
+            //create camera
+            const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+            //create renderer
+            const renderer = new THREE.WebGLRenderer();
+            //set resolution [fs]
+            // how to lower res?
+            renderer.setSize(window.innerWidth, window.innerHeight,);
+            //rendering as DOM
+            document.body.appendChild( renderer.domElement );
+            //create contstant geometry => box
+            const geometry = new THREE.BoxGeometry();
+            //create material for box w/ color green
+            const material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true });
+            //create box mesh (includes geomtetry and mat made earlier)
+            const cube = new THREE.Mesh( geometry, material, );
+            //add cube to scene
+            scene.add( cube );
+            //without function animate() the screen will be black.
+            //runs as loop to keep refreshing screen.
+            function animate() {
+	        requestAnimationFrame( animate );
+	        renderer.render( scene, camera );
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            }
+            //run animate function
+            animate();
+            //set camera position
+            camera.position.z = 5;
+		</script>
+	</body>
+</html>
